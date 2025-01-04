@@ -15,7 +15,7 @@ pipeline {
 
     stage('Docker build image') {
       steps {
-        sh 'docker build -t cicdimage .'
+        sh 'docker build -t cicdimage'
       }
     }
 
