@@ -21,12 +21,10 @@ pipeline {
 
     stage('Docker push') {
       steps {
-        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'dockerhub-id\')  
-
-{ 
-app.push("${env.BUILD_NUMBER}") 
-app.push("latest") 
-}'''
+        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'dockerhub-id\') {            
+       app.push("${env.BUILD_NUMBER}")            
+       app.push("latest")        
+              }'''
       }
     }
 
