@@ -16,8 +16,7 @@ script ./scripts/build.sh'''
 
     stage('Test') {
       steps {
-        sh '''chmod +x scripts/test.sh
-script ./scripts/test.sh'''
+        sh 'script ./scripts/test.sh'
       }
     }
 
