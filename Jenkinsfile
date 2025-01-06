@@ -21,7 +21,7 @@ pipeline {
 
     stage('Docker push') {
       steps {
-        sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\') 
+        sh '''withDockerRegistry(credentialsId: \'docker_hub_creds_id\', url: \'https://index.docker.io/v1/\')
 {            
 docker.image(\'cicdimage\').push ("${env.BUILD_NUMBER}")
 docker.image(\'cicdimage\').push ("latest")
