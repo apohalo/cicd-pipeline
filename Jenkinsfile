@@ -23,7 +23,7 @@ script ./scripts/test.sh'''
 
     stage('Docker Image') {
       steps {
-        sh 'docker build -t cicdimage .'
+        sh 'docker build -t cicd .'
       }
     }
 
