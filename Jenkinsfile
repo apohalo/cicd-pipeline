@@ -21,7 +21,7 @@ script ./scripts/test.sh'''
       }
     }
 
-    stage('Build Image') {
+    stage('Docker Image') {
       steps {
         sh 'docker build -t cicdimage .'
       }
