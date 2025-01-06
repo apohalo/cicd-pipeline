@@ -21,17 +21,12 @@ script ./scripts/test.sh'''
       }
     }
 
-    stage('Docker Image') {
+    stage('Docker image') {
       steps {
-        echo 'Building docker image'
-        sh 'docker build -t cicd .'
-      }
-    }
+        script {
+          docker.build("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
+        }
 
-    stage('Docker Push') {
-      steps {
-        sh '''docker image tag cicd:latest aigulsadykova/test-jenkins-pipeline:v2
-docker image push aigulsadykova/test-jenkins-pipeline:v2'''
       }
     }
 
