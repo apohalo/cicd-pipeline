@@ -1,9 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Git Checkout') {
+    stage('Build') {
       steps {
-        git(url: 'https://github.com/apohalo/cicd-pipeline.git', credentialsId: 'github_creds', branch: 'main', poll: true)
+        sh 'script ./scripts/build.sh'
       }
     }
 
