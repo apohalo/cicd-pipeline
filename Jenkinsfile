@@ -24,13 +24,8 @@ script ./scripts/test.sh'''
     stage('Docker image') {
       steps {
         script {
-          stage('Build a docker image') {
-            steps {
-              script {
-                docker.build("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
-              }
-
-            }
+          script {
+            docker.build("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
           }
         }
 
@@ -40,17 +35,14 @@ script ./scripts/test.sh'''
     stage('Docker Push') {
       steps {
         script {
-          stage('Push') {
-            steps {
-              script {
-                docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id') {
-                  def app = docker.image("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
-                  app.push("${env.BUILD_NUMBER}")
-                  app.push("latest")}
-                }
-
-              }
+          script {
+            docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id') {
+              def app = docker.image("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
+              app.push("${env.BUILD_NUMBER}")
+              app.push("latest")}
             }
+
+
           }
 
         }
