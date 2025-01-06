@@ -15,7 +15,7 @@ pipeline {
 
     stage('Docker build image') {
       steps {
-        sh 'docker build -t cicdimage .'
+        sh 'app=docker build -t cicdimage .'
       }
     }
 
@@ -23,8 +23,8 @@ pipeline {
       steps {
         sh '''docker.withRegistry(\'https://registry.hub.docker.com\', \'docker_hub_creds_id\') 
 {            
-cicdimage.push("${env.BUILD_NUMBER}")
-cicdimage.push("latest")
+app.push("${env.BUILD_NUMBER}")
+app.push("latest")
 }
         
 '''
