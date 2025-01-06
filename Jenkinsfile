@@ -21,32 +21,19 @@ script ./scripts/test.sh'''
       }
     }
 
-    stage('Docker image') {
+    stage('Docker Build') {
       steps {
-        script {
-          script {
-            docker.build("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
-          }
-        }
-
+        sh 'docker build -t cicd .'
       }
     }
 
     stage('Docker Push') {
       steps {
-        script {
-          script {
-            docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_creds_id') {
-              def app = docker.image("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
-              app.push("${env.BUILD_NUMBER}")
-              app.push("latest")}
-            }
+        sh '''docker image tag cicd:latest aigulsadykova/test-jenkins-pipeline:v2
 
-
-          }
-
-        }
+docker image push aigulsadykova/test-jenkins-pipeline:v2'''
       }
-
     }
+
   }
+}
