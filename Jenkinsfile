@@ -23,10 +23,8 @@ script ./scripts/test.sh'''
 
     stage('Docker Image') {
       steps {
-        script {
-          app = docker.build("${env.IMAGE_NAME}:${env.BUILD_NUMBER}")
-        }
-
+        echo 'Building docker image'
+        sh 'docker build -t cicd .'
       }
     }
 
