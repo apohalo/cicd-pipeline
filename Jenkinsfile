@@ -28,5 +28,12 @@ script ./scripts/test.sh'''
       }
     }
 
+    stage('Docker Push') {
+      steps {
+        sh '''docker image tag cicd:latest aigulsadykova/test-jenkins-pipeline:v2
+docker image push aigulsadykova/test-jenkins-pipeline:v2'''
+      }
+    }
+
   }
 }
